@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+   <link rel="stylesheet" href="http://taitems.github.com/UX-Lab/core/css/prettify.css" />
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+
+
+{% endblock %}
+
+        {% block head %}
+            <title>{% block title %}{% endblock %} - Effectifs</title>
+        {% endblock %}
+
+    </head>
+    <body>
+{% block content %}
+
+
+  <!-- _____________________________________ZONE FILTRES ______________________________________________ -->
+  <div class="col-sm-12 col-xs-12">
+   <div style="background-color: #01D758; text-align: center; color: black; font-size: 23px; ">Interface effectifs</div>
+  </div>
+<div class="bordure_div">
+  <div class="row">
+  <div class="col-sm-2 col-xs-2">
+    <div class="btn-group">
+
+     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choix de l'interface
+  </button>
+<div class="dropdown-menu">
+  <div class="dropdown-item" style="background-color: #01D758;">Interface effectifs</div>
+  <div class="dropdown-item" style="background-color: #25FDE9;">Interface TTA</div>
+  <div class="dropdown-item" style="background-color: #FEE347;">Interface Plan de QT</div>
+  <div class="dropdown-item" style="background-color: #CC66FF;">Interface Congés</div>
+  <div class="dropdown-item" style="background-color: #C55A11;">Interface Journal transactionnel</div>
+</div>
+ </div>
+  </div>
+  <div class="col-sm-10 col-xs-10">
+  <div style="background-color: #D9D9D9; text-align: center; color: white; font-size: 20px; ">Filtres</div>
+<br>
+{% include 'GestionBundle::filtre.html.twig'  %}
+
+  </div>
+  </div>
+</div>
+
+
+ 
+
+
+  <!-- ________________________________________ FIN ZONE FILTRES __________________________________________________ -->
+
+
+  <!-- _____________________________________ ZONE CONTRÔLES DE L'INTERFACE  ______________________________________________ -->
+    <div class="col-sm-12 col-md-12 col-xs-12">
+
+<br>
+<button type="submit" class="btn btn-success">Chargeur de l'interface</button>
+{% include 'GestionBundle::import.html.twig' %}
+
+        {% for message in app.flashes('notice') %}
+            <p class=" text-center bg-success "> {{ message|nl2br }}</p>
+        {% endfor %}
+         {% for message in app.flashes('warning') %}
+            <p class=" text-center bg-danger "> {{ message|nl2br }}</p>
+        {% endfor %}
+ </div>
+ <div class="bordure_div">
+   <div style="background-color: #D9D9D9; text-align: center; color: white; font-size: 23px; ">Contrôles de l'interface</div>
+  <span id="erreur" class="erreur" hidden="hidden"><p> Aucun pilote trouvé </p> </span><br>
+   <span id="controlePath" data-controlepath="{{ path('controle') }}"></span>
+<form id="form_controle" action="{{ path('controle') }}" method="post">
+
+
+ <div class="row">
+
+  <div class="col-sm-2 col-xs-2">
+   <label>Matricule</label>
+  <div class="input-group mb-3">
+    <input type="text" id="matricule" class="form-control" placeholder="Matricule" aria-label="" aria-describedby="basic-addon1">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</div>
+ </div>
+ <div class="col-sm-2 col-xs-2">
+  <label>Nom</label>
+    <div class="input-group mb-3">
+    <input type="text" class="form-control" id="nom" placeholder="Nom" aria-label="" aria-describedby="basic-addon1">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</div>
+ </div>
+  <div class="col-sm-1 col-xs-1">
+    <label>Prenom</label>
+<input id="prenom" type="text" class="form-control" readonly>
+  </div>
+   <div class="col-sm-2 col-xs-2">
+    <label>Date naissance</label>
+<input id="date_naissance" type="text" class="form-control" readonly>
+  </div>
+  <div class="col-sm-1 col-xs-1">
+    <label>Age</label>
+<input id="age" type="text" class="form-control" readonly>
+  </div>
+  <div class="col-sm-1 col-xs-1">
+    <label>Entree AF</label>
+<input id="entree_af" type="text" class="form-control" readonly>
+  </div>
+    <div class="col-sm-1 col-xs-1">
+      <label>LCP</label>
+<input id="LCP" type="text" class="form-control" readonly>
+  </div> 
+  <div class="col-sm-1 col-xs-1">
+    <label>FCS Theo</label>
+<input id="dateFCS_theo" type="text" class="form-control" readonly>
+  </div>
+  <div class="col-sm-1 col-xs-1">
+    <label>Dte FCS r.</label>
+<input id="dateFCS_r" type="text" class="form-control" readonly>
+  </div> <!-- Espace droit -->
+</div> <!-- row -->
+
+
+ <div class="row">
+
+<div class="col-sm-1 col-xs-1">
+     <label>Role</label>
+ <input id="role" type="text" class="form-control" readonly>
+ </div>
+  <div class="col-sm-2 col-xs-2">
+     <label>Fonction</label>
+ <input id="fonction" type="text" class="form-control" readonly>
+  </div>
+ <div class="col-sm-1 col-xs-1">
+<label>Jrs Cadre</label>
+<input id="jr_cadre" type="text" class="form-control" readonly>
+  </div> 
+  <div class="col-sm-1 col-xs-1"> 
+  <label>Nom. INS</label>
+    <input id="nomination_ins" type="text" class="form-control" readonly>
+  </div>
+   <div class="col-sm-1 col-xs-1"> 
+  <label>Susp/Prorogé</label>
+    <input id="prorogation" type="text" class="form-control" readonly>
+  </div>
+  <div class="col-sm-1 col-xs-1">
+     <label>Fin mandat</label>
+     <input type="text" id="datefinmandat_theo" class="form-control" readonly></div>
+  <div class="col-sm-1 col-xs-1">
+     <label>Fin QT</label>
+     <input type="text" id="" class="form-control" readonly></div>
+  <div class="col-sm-1 col-xs-1">
+     <label>TTA</label>
+     <input type="text" id="" class="form-control" readonly></div>
+
+
+
+
+  
+ 
+  
+  <!--  Pour récupérer l'id -->
+  <input hidden="hidden" type="text" id="id" class="form-control" >
+</form>
+<div class="col-sm-1 col-xs-1">
+  <label> </label>
+  <div class="action_" id="action_" hidden="hidden">
+   
+    <div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action
+  </button>
+  <div class="dropdown-menu">
+ <!--    <button type="submit" name="submitAction"  value="nd_cadre" data-toggle="modal" data-target="#nd_cadre">Nomination denomination d'un cadre</button> -->
+  <div class="dropdown-item" id="url_cadre" data-toggle="modal" data-target="#nd_cadre" style="background-color: #DDEBF7;">Nomination / dénomination / Jours cadre d'un Cadre</div>
+<div class="dropdown-item" id="url_instructeur" data-toggle="modal" data-target="#nd_instructeur" style="background-color: #C6E0B4;">Nomination / dénomination / Suspensions d'un Instructeur</div>
+<div class="dropdown-item" id="url_changement_base" data-toggle="modal" data-target="#ChangementBase" style="background-color: #F4B084;">Changement de Base opérationnelle (moyen-courrier)</div>
+<div class="dropdown-item" id="url_indisponible" data-toggle="modal" data-target="#Indisponible" style="background-color: #FFD966;">Pilote indisponible</div>
+<div class="dropdown-item" data-toggle="modal" data-target="#pretInterSecteur" style="background-color: #FFFF66;">Pret inter secteur</div>
+<div class="dropdown-item"  data-toggle="modal" data-target="#Prolongation" style="background-color: #A6A6A6;" >Prolongation activité</div>
+<div class="dropdown-item"  data-toggle="modal" data-target="#FCS" style="background-color: #A6A6A6;" >FCS</div>
+
+
+
+<!-- <div class="dropdown-item" id="url_pret_if" data-toggle="modal" data-target="#pretInterFlotte"></div> -->
+</div>
+</div>
+
+</div>
+</div> </div><!-- row -->
+
+
+</div>
+
+</div>
+ <br>
+
+{% include 'GestionBundle::modals.html.twig'  %}
+
+
+<div class="col-sm-1"></div>
+ 
+  <!-- _____________________________________ FIN ZONE CONTRÔLES DE L'INTERFACE  ______________________________________________ -->
+  <!-- _____________________________________ ZONE CALENDRIER  ______________________________________________ -->
+    <div class="col-sm-12 col-xs-12">
+   <div style="background-color: #D9D9D9; text-align: center; color: white; font-size: 23px; ">Calendrier</div>
+  </div>
+  <div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <div class="gantt"></div>
+
+
+  </div>
+</div>
+  <!-- _____________________________________ FIN ZONE CALENDRIER  ______________________________________________ -->
+  <!-- _____________________________________ ZONE CALCUL EN COLONNES  ______________________________________________ -->
+    <div class="col-sm-12 col-xs-12">
+   <div style="background-color: #D9D9D9; text-align: center; color: white; font-size: 23px; ">Calcul</div>
+    <table class="table table-sm">
+  <tbody>
+    <tr>
+      <th scope="row">Base Fonction Flotte</th>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td> 
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>       
+    </tr>
+    <tr>
+      <th scope="row">Base Fonction Flotte</th>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>
+    </tr>
+    <tr>
+      <th scope="row">Base Fonction Flotte</th>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>  
+      <td>02</td>
+      <td>02</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+    <!-- _____________________________________ FIN ZONE CALCUL EN COLONNES  ______________________________________________ -->
+</div> <!-- Fin container -->
+
+
+        {% block javascripts %}
+        
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/ajax.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+           <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+           <script src="{{ asset('js/bootstrap.js') }}"></script>          
+           <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+           <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+           <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  		   <script src="{{ asset('js/jquery.fn.gantt.js') }}"></script>
+
+    <script type="text/javascript">
+    // Precocher les cases
+     $("input[name='filtrep[base][]']").prop("checked", true);
+     
+     $('#select_fonction option[value="All Fonctions"]').attr('selected','selected');
+    // Activation du bouton valider
+     document.getElementById('filtrep_Valider').click();
+    
+
+
+
+$('.js-datepicker').datepicker();
+
+
+    </script>
+        {% endblock %}
+        {% endblock %}</div>
+    </body>
+</html>

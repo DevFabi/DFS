@@ -1,0 +1,70 @@
+
+    
+effectifs:
+    path: /effectifs
+    defaults:
+      _controller: GestionBundle:Effectifs:effectifs
+
+controle:
+    path: /controle
+    defaults:
+      _controller: GestionBundle:Ajax:controle
+    requirements:
+      _method: POST
+
+filtre:
+    path: /filtre
+    defaults:
+      _controller: GestionBundle:Ajax:filtre
+    requirements:
+      _method: POST
+
+import:
+    path: /import
+    defaults:
+      _controller: GestionBundle:Effectifs:import
+    requirements:
+      _method: POST
+
+newpilote:
+    path: /newpilote
+    defaults:
+      _controller: GestionBundle:Default:newpilote
+
+
+nd_cadre:
+    path: /nd_cadre
+    defaults:
+      _controller: GestionBundle:Effectifs:nd_cadre
+    options:
+        expose: true
+nd_instructeur:
+    path: /nd_instructeur
+    defaults:
+      _controller: GestionBundle:Effectifs:nd_instructeur
+    options:
+        expose: true
+changement_base:
+    path: /changement_base
+    defaults:
+      _controller: GestionBundle:Effectifs:changementBase
+    options:
+        expose: true
+indisponible:
+    path: /indisponible
+    defaults:
+      _controller: GestionBundle:Effectifs:indisponible
+    options:
+        expose: true     
+pret_if:
+    path: pret_if
+    defaults:
+      _controller: GestionBundle:Effectifs:pret_if
+    options:
+        expose: true    
+FCS:
+    path: FCS
+    defaults:
+      _controller: GestionBundle:Effectifs:FCS
+    options:
+        expose: true    

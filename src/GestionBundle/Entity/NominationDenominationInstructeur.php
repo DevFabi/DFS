@@ -1,0 +1,515 @@
+<?php
+
+namespace GestionBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+use GestionBundle\Entity\Role;
+use GestionBundle\Entity\Base;
+use GestionBundle\Entity\Fonction;
+use GestionBundle\Entity\Flotte;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+/**
+ * NominationDenominationInstructeur
+ *
+ * @ORM\Table(name="nomination_denomination_instructeur")
+ * @ORM\Entity(repositoryClass="GestionBundle\Repository\NominationDenominationInstructeurRepository")
+ */
+class NominationDenominationInstructeur
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNomination", type="date")
+     */
+    private $dateNomination;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFinTheo", type="date",nullable=true)
+     */
+    private $dateFinTheo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension1Debut", type="date",nullable=true)
+     */
+    private $suspension1Debut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension1Fin", type="date", nullable=true)
+     */
+    private $suspension1Fin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension2Debut", type="date", nullable=true)
+     */
+    private $suspension2Debut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension2Fin", type="date", nullable=true)
+     */
+    private $suspension2Fin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension3Debut", type="date", nullable=true)
+     */
+    private $suspension3Debut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension3Fin", type="date", nullable=true)
+     */
+    private $suspension3Fin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension4Debut", type="date", nullable=true)
+     */
+    private $suspension4Debut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension4Fin", type="date", nullable=true)
+     */
+    private $suspension4Fin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension5Debut", type="date", nullable=true)
+     */
+    private $suspension5Debut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="suspension5Fin", type="date", nullable=true)
+     */
+    private $suspension5Fin;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GestionBundle\Entity\Pilote", inversedBy="nominationDenominationInstructeurs")
+     * @ORM\JoinColumn(name="pilote_id", referencedColumnName="id")
+     */
+    private $pilote; 
+         
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="prorogation", type="boolean", nullable=true)
+     */
+    private $prorogation;
+
+    /**
+     * @var Fonction $fonction
+     * @ManyToOne(targetEntity="Fonction")
+     * @JoinColumn(name="id_fonctionNouvelle", referencedColumnName="id")
+     */
+    private $nouvelleFonction;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+     /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    /**
+     * Set dateNomination
+     *
+     * @param \DateTime $dateNomination
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setDateNomination($dateNomination)
+    {
+        $this->dateNomination = $dateNomination;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNomination
+     *
+     * @return \DateTime
+     */
+    public function getDateNomination()
+    {
+        return $this->dateNomination;
+    }
+
+    /**
+     * Set dateFinTheo
+     *
+     * @param \DateTime $dateFinTheo
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setDateFinTheo($dateFinTheo)
+    {
+        $this->dateFinTheo = $dateFinTheo;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFinTheo
+     *
+     * @return \DateTime
+     */
+    public function getDateFinTheo()
+    {
+        return $this->dateFinTheo;
+    }
+
+    /**
+     * Set suspension1Debut
+     *
+     * @param \DateTime $suspension1Debut
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension1Debut($suspension1Debut)
+    {
+        $this->suspension1Debut = $suspension1Debut;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension1Debut
+     *
+     * @return \DateTime
+     */
+    public function getSuspension1Debut()
+    {
+        return $this->suspension1Debut;
+    }
+
+    /**
+     * Set suspension1Fin
+     *
+     * @param \DateTime $suspension1Fin
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension1Fin($suspension1Fin)
+    {
+        $this->suspension1Fin = $suspension1Fin;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension1Fin
+     *
+     * @return \DateTime
+     */
+    public function getSuspension1Fin()
+    {
+        return $this->suspension1Fin;
+    }
+
+    /**
+     * Set suspension2Debut
+     *
+     * @param \DateTime $suspension2Debut
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension2Debut($suspension2Debut)
+    {
+        $this->suspension2Debut = $suspension2Debut;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension2Debut
+     *
+     * @return \DateTime
+     */
+    public function getSuspension2Debut()
+    {
+        return $this->suspension2Debut;
+    }
+
+    /**
+     * Set suspension2Fin
+     *
+     * @param \DateTime $suspension2Fin
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension2Fin($suspension2Fin)
+    {
+        $this->suspension2Fin = $suspension2Fin;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension2Fin
+     *
+     * @return \DateTime
+     */
+    public function getSuspension2Fin()
+    {
+        return $this->suspension2Fin;
+    }
+
+    /**
+     * Set suspension3Debut
+     *
+     * @param \DateTime $suspension3Debut
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension3Debut($suspension3Debut)
+    {
+        $this->suspension3Debut = $suspension3Debut;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension3Debut
+     *
+     * @return \DateTime
+     */
+    public function getSuspension3Debut()
+    {
+        return $this->suspension3Debut;
+    }
+
+    /**
+     * Set suspension3Fin
+     *
+     * @param \DateTime $suspension3Fin
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension3Fin($suspension3Fin)
+    {
+        $this->suspension3Fin = $suspension3Fin;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension3Fin
+     *
+     * @return \DateTime
+     */
+    public function getSuspension3Fin()
+    {
+        return $this->suspension3Fin;
+    }
+
+    /**
+     * Set suspension4Debut
+     *
+     * @param \DateTime $suspension4Debut
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension4Debut($suspension4Debut)
+    {
+        $this->suspension4Debut = $suspension4Debut;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension4Debut
+     *
+     * @return \DateTime
+     */
+    public function getSuspension4Debut()
+    {
+        return $this->suspension4Debut;
+    }
+
+    /**
+     * Set suspension4Fin
+     *
+     * @param \DateTime $suspension4Fin
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension4Fin($suspension4Fin)
+    {
+        $this->suspension4Fin = $suspension4Fin;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension4Fin
+     *
+     * @return \DateTime
+     */
+    public function getSuspension4Fin()
+    {
+        return $this->suspension4Fin;
+    }
+
+    /**
+     * Set suspension5Debut
+     *
+     * @param \DateTime $suspension5Debut
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension5Debut($suspension5Debut)
+    {
+        $this->suspension5Debut = $suspension5Debut;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension5Debut
+     *
+     * @return \DateTime
+     */
+    public function getSuspension5Debut()
+    {
+        return $this->suspension5Debut;
+    }
+
+    /**
+     * Set suspension5Fin
+     *
+     * @param \DateTime $suspension5Fin
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setSuspension5Fin($suspension5Fin)
+    {
+        $this->suspension5Fin = $suspension5Fin;
+
+        return $this;
+    }
+
+    /**
+     * Get suspension5Fin
+     *
+     * @return \DateTime
+     */
+    public function getSuspension5Fin()
+    {
+        return $this->suspension5Fin;
+    }
+
+    /**
+     * Set pilote
+     *
+     * @param \GestionBundle\Entity\Pilote $pilote
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setPilote(\GestionBundle\Entity\Pilote $pilote = null)
+    {
+        $this->pilote = $pilote;
+
+        return $this;
+    }
+
+    /**
+     * Get pilote
+     *
+     * @return \GestionBundle\Entity\Pilote
+     */
+    public function getPilote()
+    {
+        return $this->pilote;
+    }
+
+
+    /**
+     * Set prorogation
+     *
+     * @param boolean $prorogation
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setProrogation($prorogation)
+    {
+        $this->prorogation = $prorogation;
+
+        return $this;
+    }
+
+    /**
+     * Get prorogation
+     *
+     * @return boolean
+     */
+    public function getProrogation()
+    {
+        return $this->prorogation;
+    }
+    /**
+     * Set nouvelleFonction
+     *
+     * @param \GestionBundle\Entity\Fonction $nouvelleFonction
+     *
+     * @return NominationDenominationInstructeur
+     */
+    public function setNouvelleFonction(\GestionBundle\Entity\Fonction $nouvelleFonction = null)
+    {
+        $this->nouvelleFonction = $nouvelleFonction;
+        
+        return $this;
+    }
+    
+    /**
+     * Get nouvelleFonction
+     *
+     * @return \GestionBundle\Entity\Fonction
+     */
+    public function getNouvelleFonction()
+    {
+        return $this->nouvelleFonction;
+    }
+
+}

@@ -1,0 +1,258 @@
+<?php
+
+namespace GestionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use GestionBundle\Entity\Role;
+use GestionBundle\Entity\Base;
+use GestionBundle\Entity\Fonction;
+use GestionBundle\Entity\Flotte;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * ProlongationFCS
+ *
+ * @ORM\Table(name="prolongation_f_c_s")
+ * @ORM\Entity(repositoryClass="GestionBundle\Repository\ProlongationFCSRepository")
+ */
+class ProlongationFCS
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFCStheorique", type="date")
+     */
+    private $dateFCStheorique;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFCSreelle", type="date", nullable=true)
+     */
+    private $dateFCSreelle;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="prolong61", type="boolean")
+     */
+    private $prolong61;
+        /**
+     * @var bool
+     *
+     * @ORM\Column(name="prolong62", type="boolean")
+     */
+    private $prolong62;
+        /**
+     * @var bool
+     *
+     * @ORM\Column(name="prolong63", type="boolean")
+     */
+    private $prolong63;
+
+        /**
+     * @var bool
+     *
+     * @ORM\Column(name="prolong64", type="boolean")
+     */
+    private $prolong64;
+        /**
+     * @var bool
+     *
+     * @ORM\Column(name="prolong65", type="boolean")
+     */
+    private $prolong65;
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateFCStheorique
+     *
+     * @param \DateTime $dateFCStheorique
+     *
+     * @return ProlongationFCS
+     */
+    public function setDateFCStheorique($dateFCStheorique)
+    {
+        $this->dateFCStheorique = $dateFCStheorique;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFCStheorique
+     *
+     * @return \DateTime
+     */
+    public function getDateFCStheorique()
+    {
+        return $this->dateFCStheorique;
+    }
+
+    /**
+     * Set dateFCSreelle
+     *
+     * @param \DateTime $dateFCSreelle
+     *
+     * @return ProlongationFCS
+     */
+    public function setDateFCSreelle($dateFCSreelle)
+    {
+        $this->dateFCSreelle = $dateFCSreelle;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFCSreelle
+     *
+     * @return \DateTime
+     */
+    public function getDateFCSreelle()
+    {
+        return $this->dateFCSreelle;
+    }
+
+
+
+    /**
+     * Set prolong61
+     *
+     * @param boolean $prolong61
+     *
+     * @return ProlongationFCS
+     */
+    public function setProlong61($prolong61)
+    {
+        $this->prolong61 = $prolong61;
+
+        return $this;
+    }
+
+    /**
+     * Get prolong61
+     *
+     * @return boolean
+     */
+    public function getProlong61()
+    {
+        return $this->prolong61;
+    }
+
+    /**
+     * Set prolong62
+     *
+     * @param boolean $prolong62
+     *
+     * @return ProlongationFCS
+     */
+    public function setProlong62($prolong62)
+    {
+        $this->prolong62 = $prolong62;
+
+        return $this;
+    }
+
+    /**
+     * Get prolong62
+     *
+     * @return boolean
+     */
+    public function getProlong62()
+    {
+        return $this->prolong62;
+    }
+
+    /**
+     * Set prolong63
+     *
+     * @param boolean $prolong63
+     *
+     * @return ProlongationFCS
+     */
+    public function setProlong63($prolong63)
+    {
+        $this->prolong63 = $prolong63;
+
+        return $this;
+    }
+
+    /**
+     * Get prolong63
+     *
+     * @return boolean
+     */
+    public function getProlong63()
+    {
+        return $this->prolong63;
+    }
+
+    /**
+     * Set prolong64
+     *
+     * @param boolean $prolong64
+     *
+     * @return ProlongationFCS
+     */
+    public function setProlong64($prolong64)
+    {
+        $this->prolong64 = $prolong64;
+
+        return $this;
+    }
+
+    /**
+     * Get prolong64
+     *
+     * @return boolean
+     */
+    public function getProlong64()
+    {
+        return $this->prolong64;
+    }
+
+    /**
+     * Set prolong65
+     *
+     * @param boolean $prolong65
+     *
+     * @return ProlongationFCS
+     */
+    public function setProlong65($prolong65)
+    {
+        $this->prolong65 = $prolong65;
+
+        return $this;
+    }
+
+    /**
+     * Get prolong65
+     *
+     * @return boolean
+     */
+    public function getProlong65()
+    {
+        return $this->prolong65;
+    }
+}

@@ -1,0 +1,63 @@
+
+{% extends 'GestionBundle::effectifs.html.twig' %}
+{% block content %}
+
+ <span id="filtrePath" data-filtrepath="{{ path('filtre') }}"></span>
+ {{ form_start(FiltreForm, {'attr': {'id': 'form_filtre'}}, {'action': path('filtre'), 'method': 'POST'} ) }}
+
+<div class="row">
+	<div class="col-sm-1"></div>
+<div class="col-sm-4">	
+<div class="form-check">	
+{{ form_label(FiltreForm.base, 'Base') }}
+  {{ form_widget(FiltreForm.base, {'id': 'check_base'}) }}
+<br>
+</div>
+   
+ <div class="form-check">
+ 	
+{{ form_label(FiltreForm.flotte, 'Flotte') }}
+  {{ form_widget(FiltreForm.flotte, {'id': 'check_flotte'}) }}
+</div>
+
+</div><!-- Div 4 -->
+
+<div class="col-sm-3">
+		<div class="col-4">
+		{{ form_label(FiltreForm.role, 'Role') }}
+  {{ form_widget(FiltreForm.role, {'id': 'select_role', 'attr': {'class' :'form-control'}}) }}
+	</div><br>
+		<div class="col-4">
+	{{ form_label(FiltreForm.fonction, 'Fonction') }}
+  {{ form_widget(FiltreForm.fonction, {'id': 'select_fonction', 'attr': {'class' :'form-control'}}) }}
+	</div>
+</div>
+<div class="col-sm-1">
+  {{ form_label(FiltreForm.prolong61, '61') }}
+  {{ form_widget(FiltreForm.prolong61, {'id': 'prolong61', 'attr': {'class' :'form-control'}}) }}
+  {{ form_label(FiltreForm.prolong62, '62') }}
+  {{ form_widget(FiltreForm.prolong62, {'id': 'prolong62', 'attr': {'class' :'form-control'}}) }}
+  {{ form_label(FiltreForm.prolong63, '63') }}
+  {{ form_widget(FiltreForm.prolong63, {'id': 'prolong63', 'attr': {'class' :'form-control'}}) }}
+  {{ form_label(FiltreForm.prolong64, '64') }}
+  {{ form_widget(FiltreForm.prolong64, {'id': 'prolong64', 'attr': {'class' :'form-control'}}) }}
+  {{ form_label(FiltreForm.prolong65, '65') }}
+  {{ form_widget(FiltreForm.prolong65, {'id': 'prolong65', 'attr': {'class' :'form-control'}}) }}
+</div>
+<div class="col-sm-2">	
+Today : {{ "now"|date("d/m/Y" , "Europe/Paris") }}
+	
+		<h6>Saison</h6><br>
+		<button id="saison_clic">Saison</button>
+		<h6>Saison</h6>
+	{{ form_end(FiltreForm) }}
+	</div> 
+</div>
+</form>
+
+
+<div class="pilotes_select"></div>
+
+
+{% endblock %}
+

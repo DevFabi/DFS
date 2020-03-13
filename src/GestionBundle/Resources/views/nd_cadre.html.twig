@@ -1,0 +1,64 @@
+
+{% extends 'GestionBundle::effectifs.html.twig' %}
+
+
+{% block content %}
+<span id="nd_cadrePath" data-nd_cadrepath="{{ path('nd_cadre') }}"></span> 
+<br><br>
+ <div class="row">
+  	<div class="col-md-3"></div>
+  	<div class="col-md-6">
+          
+      <h2 style="text-align: center;">Nomination Denomination d'un cadre</h2> <br>
+
+  {{ form_start(edit_form) }}
+
+  <div class="form-groupe">
+  <div class="label-style">{{ form_label(edit_form.fonction, 'Fonction') }}</div>
+  {{ form_widget(edit_form.fonction, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.fonction) }}
+<br><br>
+  <div class="row">
+  	<div class="col-md-4"><div class="label-style">{{ form_label(edit_form.matricule, 'Matricule') }}</div>
+  {{ form_widget(edit_form.matricule, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.matricule) }}</div>
+  <div class="col-md-4"><div class="label-style">{{ form_label(edit_form.nom, 'Nom') }}</div>
+  {{ form_widget(edit_form.nom, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.nom) }}</div>
+  <div class="col-md-4"><div class="label-style">{{ form_label(edit_form.prenom, 'Prenom') }}</div>
+  {{ form_widget(edit_form.prenom, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.prenom) }}</div>
+  	
+  </div><br><br>
+
+   <div class="row">
+  	<div class="col-md-6"><div class="label-style">{{ form_label(edit_form.jrsCadreParAn, 'Jours cadre par an') }}</div>
+  {{ form_widget(edit_form.jrsCadreParAn, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.jrsCadreParAn) }}</div>
+  <div class="col-md-6"><div class="label-style">{{ form_label(edit_form.dteNominationFCS, 'Date nomination') }}</div>
+  {{ form_widget(edit_form.dteNominationFCS, {'attr':{'class':'form-control'}}) }}
+  {{ form_errors(edit_form.dteNominationFCS) }}</div> <!-- A CHANGER -->
+  	
+  </div><br><br>
+
+    {{ form_end(edit_form) }}
+     <div class="row">
+     	<div class="col-md-5"></div>
+  			<div class="col-md-4">
+   			 	<button type="submit" class="btn btn-success ">Valider</button>
+			</div>
+	</div>
+    
+</div>
+<div class="col-md-3"></div>
+</div>
+ 
+
+
+
+
+
+
+{% endblock %}
+
+

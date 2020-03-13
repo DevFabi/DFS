@@ -1,0 +1,778 @@
+
+{% extends 'GestionBundle::effectifs.html.twig' %}
+{% block content %}
+
+
+<!--   ________________________________  VUE DES MODALS ACTION DE LA PAGE EFFECTIFS   ___________________________________ -->
+
+<!--  ________________________________MODAL NOMINATION DENOMINATION CADRE ________________________________ -->
+<div id="nd_cadre" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #DDEBF7;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Nomination / dénomination / Jours
+					cadre d'un Cadre</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(NominationDenominationCadreForm) }}
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationCadreForm.pilote.matricule, 'Matricule') }}
+						{{ form_widget(NominationDenominationCadreForm.pilote.matricule, {'id': 'pilote-matricule', 'attr': {'class' :'form-control', 'placeholder':"Matricule", 'readonly':'readonly'}}) }}
+
+					</div>
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationCadreForm.pilote.nom, 'Nom') }}
+						{{ form_widget(NominationDenominationCadreForm.pilote.nom, { 'id': 'pilote-nom', 'attr': {'class':'form-control', 'placeholder':"Nom", 'readonly':'readonly'}}) }}
+
+					</div>
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationCadreForm.pilote.prenom, 'Prenom') }}
+						{{ form_widget(NominationDenominationCadreForm.pilote.prenom, {'id': 'pilote-prenom','attr': {'class' :'form-control', 'placeholder': "Prenom", 'readonly':'readonly'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_widget(NominationDenominationCadreForm.evenCadre, {'id': 'evenCadre','attr': {'class' :'form-control', 'hidden':'hidden'}}) }}
+
+						{{ form_widget(NominationDenominationCadreForm.id, {'id': 'idndcadre','attr': {'class' :'form-control', 'placeholder': "Prenom", 'hidden':'hidden'}}) }}
+						<input id="pilote-flotte" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-role" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-fonction" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<div class="hiddenCadre">
+							{{ form_label(NominationDenominationCadreForm.nouvelleFonction, 'Fonction') }}
+							{{ form_widget(NominationDenominationCadreForm.nouvelleFonction, {'id': 'pilote-nouvelleFonction', 'attr': { 'placeholder':"Fonction"}}) }}
+						</div>
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-3">
+						{{ form_label(NominationDenominationCadreForm.nbJourAn, 'Nombre de jours / an ') }}
+						{{ form_widget(NominationDenominationCadreForm.nbJourAn, {'id': 'pilote-jrsCadreParAn', 'attr':{'class':'form-control'}}) }}
+						{{ form_errors(NominationDenominationCadreForm.nbJourAn) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class='pilote-dateNomination'>
+							{{ form_label(NominationDenominationCadreForm.dateNomination, 'Date nomination') }}
+							{{ form_widget(NominationDenominationCadreForm.dateNomination, {'id': 'pilote-dateNomination', 'attr':{'class':'form-control'}}) }}
+							{{ form_errors(NominationDenominationCadreForm.dateNomination) }}
+						</div>
+					</div>
+					<div class="col-md-6">
+						{{ form_label(NominationDenominationCadreForm.dateDenomination, 'Date denomination') }}
+						{{ form_widget(NominationDenominationCadreForm.dateDenomination, {'id': 'pilote-dateDenomination', 'attr':{'class':'js-datepicker'}}) }}
+						{{ form_errors(NominationDenominationCadreForm.dateDenomination) }}
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(NominationDenominationCadreForm) }}
+					</div>
+					<div class="col-md-2"> 
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL NOMINATION DENOMINATION CADRE ________________________________ -->
+
+
+
+
+
+
+
+<!--  ________________________________MODAL NOMINATION DENOMINATION INSTRUCTEUR ________________________________ -->
+<div id="nd_instructeur" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: #C6E0B4; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" style="text-align: center;">Nomination
+					/ dénomination / Suspensions d'un Instructeur</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(NominationDenominationInstructeurForm) }}
+
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationInstructeurForm.pilote.matricule, 'Matricule') }}
+						{{ form_widget(NominationDenominationInstructeurForm.pilote.matricule, {'id': 'pilote-matricule2', 'attr': {'class' :'form-control', 'placeholder':"Matricule", 'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationInstructeurForm.pilote.nom, 'Nom') }}
+						{{ form_widget(NominationDenominationInstructeurForm.pilote.nom, { 'id': 'pilote-nom2', 'attr': {'class':'form-control', 'placeholder':"Nom", 'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(NominationDenominationInstructeurForm.pilote.prenom, 'Prenom') }}
+						{{ form_widget(NominationDenominationInstructeurForm.pilote.prenom, {'id': 'pilote-prenom2','attr': {'class' :'form-control', 'placeholder': "Prenom", 'readonly':'readonly'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-4">
+
+						{{ form_widget(NominationDenominationInstructeurForm.evenInstructeur, {'id': 'evenInstructeur','attr': {'class' :'form-control', 'hidden':'hidden'}}) }}
+						{{ form_widget(NominationDenominationInstructeurForm.id, {'id': 'idndins','attr': {'class' :'form-control', 'placeholder': "Prenom", 'hidden':'hidden'}}) }}
+						<input id="pilote-flotte2" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-role2" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-fonction2" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class='pilote-dateNominationI'>
+							{{ form_label(NominationDenominationInstructeurForm.dateNomination, 'Date Nomination') }}
+							{{ form_widget(NominationDenominationInstructeurForm.dateNomination, {'id': 'pilote-dateNominationI', 'attr': {'class' :'form-control'}}) }}
+						</div>
+					</div>
+					<div class="col-md-6">
+						{{ form_label(NominationDenominationInstructeurForm.dateFinTheo, 'Date fin theo') }}
+						{{ form_widget(NominationDenominationInstructeurForm.dateFinTheo, {'id': 'dateFinTheo', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-6">
+						<p>Suspension 1 Deb. Periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension1Debut, {'id': 'suspension1Debut', 'attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						<p>Fin periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension1Fin, {'id': 'suspension1Fin', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Suspension 2 Deb. Periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension2Debut, {'id': 'suspension2Debut', 'attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						<p>Fin periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension2Fin, {'id': 'suspension2Fin', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Suspension 3 Deb. Periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension3Debut, {'id': 'suspension3Debut', 'attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						<p>Fin periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension3Fin, {'id': 'suspension3Fin', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Suspension 4 Deb. Periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension4Debut, {'id': 'suspension4Debut', 'attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						<p>Fin periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension4Fin, {'id': 'suspension4Fin', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Suspension 5 Deb. Periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension5Debut, {'id': 'suspension5Debut', 'attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						<p>Fin periode</p>
+						{{ form_widget(NominationDenominationInstructeurForm.suspension5Fin, {'id': 'suspension5Fin', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-3">
+						{{ form_label(NominationDenominationInstructeurForm.prorogation, 'Prorogé un an :') }}
+						{{ form_widget(NominationDenominationInstructeurForm.prorogation, {'id': 'prorogation', 'attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(NominationDenominationInstructeurForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL NOMINATION DENOMINATION INSTRUCTEUR ________________________________ -->
+
+
+
+
+
+
+<!--  ________________________________MODAL CHANGEMENT DE BASE  ________________________________ -->
+<div id="ChangementBase" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: #F4B084; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 id="testoo" class="modal-title">Changement de Base
+					opérationnelle (moyen-courrier)</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(ChangementBaseForm) }}
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_label(ChangementBaseForm.pilote.matricule, 'Matricule') }}
+						{{ form_widget(ChangementBaseForm.pilote.matricule, {'id': 'pilote-matricule3', 'attr': {'class' :'form-control', 'placeholder':"Matricule", 'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(ChangementBaseForm.pilote.nom, 'Nom') }}
+						{{ form_widget(ChangementBaseForm.pilote.nom, { 'id': 'pilote-nom3', 'attr': {'class':'form-control', 'placeholder':"Nom", 'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(ChangementBaseForm.pilote.prenom, 'Prenom') }}
+						{{ form_widget(ChangementBaseForm.pilote.prenom, {'id': 'pilote-prenom3','attr': {'class' :'form-control', 'placeholder': "Prenom", 'readonly':'readonly'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Flotte</p>
+						<input id="pilote-flotte3" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<p>Role</p>
+						<input id="pilote-role3" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<p>Fonction</p>
+						<input id="pilote-fonction3" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						{{ form_widget(ChangementBaseForm.nouvelleBase, {'id': 'radioBase','attr': {'class' :''}}) }}
+
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						{{ form_label(ChangementBaseForm.dateChangement, 'Date changement de base ') }}
+						{{ form_widget(ChangementBaseForm.dateChangement, {'id': '','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(ChangementBaseForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL CHANGEMENT DE BASE  ________________________________ -->
+
+
+
+
+
+
+
+
+<!--  ________________________________MODAL PILOTE INDISPONIBLE  ________________________________ -->
+<div id="Indisponible" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: #FFD966; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 id="testoo" class="modal-title">Pilote indisponible</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(IndisponibleForm) }}
+				<div class="row">
+					<div class="col-md-4">
+							{{ form_widget(IndisponibleForm.evenIndisponible, {'id': 'evenIndisponible','attr': {'class' :'form-control', 'hidden':'hidden', 'novalidate' : 'novalidate'}}) }}
+					
+					{{ form_widget(IndisponibleForm.idindispo, {'id': 'idindispo','attr': {'class' :'form-control', 'hidden':'hidden'}}) }}
+						{{ form_label(IndisponibleForm.pilote.matricule, 'Matricule') }}
+						{{ form_widget(IndisponibleForm.pilote.matricule, {'id': 'pilote-matricule4', 'attr': {'class' :'form-control', 'placeholder':"Matricule", 'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(IndisponibleForm.pilote.nom, 'Nom') }}
+						{{ form_widget(IndisponibleForm.pilote.nom, { 'id': 'pilote-nom4', 'attr': {'class':'form-control', 'placeholder':"Nom",'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(IndisponibleForm.pilote.prenom, 'Prenom') }}
+						{{ form_widget(IndisponibleForm.pilote.prenom, {'id': 'pilote-prenom4','attr': {'class' :'form-control', 'placeholder': "Prenom",'readonly':'readonly'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-4">
+						<input id="pilote-flotte4" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-role4" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<input id="pilote-fonction4" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						{{ form_label(IndisponibleForm.dateDebut, 'Date deb. Indispo.') }}
+						{{ form_widget(IndisponibleForm.dateDebut, {'id': 'dateDebutIndispo','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_label(IndisponibleForm.dateFin, 'Dte fin indispo.') }}
+						{{ form_widget(IndisponibleForm.dateFin, {'id': 'dateFinIndispo','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						{{ form_label(IndisponibleForm.commentaire, 'Commentaire') }}
+						{{ form_widget(IndisponibleForm.commentaire, {'id': 'comIndispo','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_label(IndisponibleForm.aSurveiller, 'A surveiller :') }}
+						{{ form_widget(IndisponibleForm.aSurveiller, {'id': 'aSurveiller','attr': {'class' :''}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-8">
+						{{ form_label(IndisponibleForm.gererPar, 'Pilote g�r� par OA JY PS :') }}
+						{{ form_widget(IndisponibleForm.gererPar, {'id': 'gererPar','attr': {'class' :'', 'onClick':'dateFCS();'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(IndisponibleForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL PILOTE INDISPONIBLE  ________________________________ -->
+
+
+
+
+
+
+
+
+
+<!--  ________________________________MODAL PRET INTER SECTEUR  ________________________________ -->
+<div id="pretInterSecteur" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: #FFFF66; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Pret inter secteur</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(pretInterSecteurForm) }}
+				<div class="row">
+					<div class="col-md-4">
+						{{ form_label(pretInterSecteurForm.pilote.matricule, 'Matricule') }}
+						{{ form_widget(pretInterSecteurForm.pilote.matricule, {'id': 'pilote-matricule5', 'attr': {'class' :'form-control', 'placeholder':"Matricule",'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(pretInterSecteurForm.pilote.nom, 'Nom') }}
+						{{ form_widget(pretInterSecteurForm.pilote.nom, { 'id': 'pilote-nom5', 'attr': {'class':'form-control', 'placeholder':"Nom",'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						{{ form_label(pretInterSecteurForm.pilote.prenom, 'Prenom') }}
+						{{ form_widget(pretInterSecteurForm.pilote.prenom, {'id': 'pilote-prenom5','attr': {'class' :'form-control', 'placeholder': "Prenom",'readonly':'readonly'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+
+					<div class="col-md-6">
+						<input id="pilote-role5" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-6">
+						<input id="pilote-fonction5" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						Flotte d'origine <input id="pilote-flotte5" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+					{{ form_widget(pretInterSecteurForm.evenpis, {'id': 'evenpis','attr': {'class' :'form-control', 'hidden':'hidden'}}) }}
+
+						{{ form_widget(pretInterSecteurForm.idpis, {'id': 'idpis','attr': {'class' :'form-control', 'placeholder': "Prenom", 'hidden':'hidden'}}) }}
+						
+						{{ form_label(pretInterSecteurForm.flotteDestination, 'Flotte destination') }}
+						{{ form_widget(pretInterSecteurForm.flotteDestination, {'id': 'flotteDestination','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						{{ form_label(pretInterSecteurForm.dateDebutPret, 'Dte début prêt ') }}
+						{{ form_widget(pretInterSecteurForm.dateDebutPret, {'id': 'debutPret','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_label(pretInterSecteurForm.dateFinPret, '     Dte fin prêt. ') }}
+						{{ form_widget(pretInterSecteurForm.dateFinPret, {'id': 'finPret','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(pretInterSecteurForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL PRET INTER SECTEUR  ________________________________ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  ________________________________ MODAL PROLONGATION  ________________________________ -->
+<div id="Prolongation" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: grey; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Prolongation</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(ProlongationForm) }}
+				<div class="row">
+					<div class="col-md-4">
+
+						{{ form_label(ProlongationForm.matricule, 'Matricule') }}
+						{{ form_widget(ProlongationForm.matricule, {'id': 'pilote-matricule6', 'attr': {'class' :'form-control', 'placeholder':"Matricule",'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						<p>Nom</p>
+						<input id="pilote-nom6" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Prenom</p>
+						<input id="pilote-prenom6" type="text" name=""
+							class="form-control" readonly="readonly">
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-4">
+						<p>Flotte</p>
+						<input id="pilote-flotte6" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<p>Role</p>
+						<input id="pilote-role6" type="text" name="" class="form-control"
+							readonly="readonly">
+
+					</div>
+					<div class="col-md-4">
+						<p>Fonction</p>
+						<input id="pilote-fonction6" type="text" name=""
+							class="form-control" readonly="readonly">
+
+					</div>
+				</div>
+				<!-- fin row -->
+
+				<div class="row">
+					<div class="col-md-4">
+						<p>Dte naissance</p>
+						<input id="pilote-dn" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Age</p>
+						<input id="pilote-age" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Date FCS theo.</p>
+						<input id="pilote-fcstheo2" type="text" name=""
+							class="form-control" readonly="readonly">
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-12">
+						<p>Prolongation Pilote :</p>
+					</div>
+					<div class="col-md-2">
+						{{ form_label(ProlongationForm.prolong61, '60 -> 61 ans') }}
+						{{ form_widget(ProlongationForm.prolong61, {'id': 'prolong61','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-2">
+						{{ form_label(ProlongationForm.prolong62, '61 -> 62 ans') }}
+						{{ form_widget(ProlongationForm.prolong62, {'id': 'prolong62','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-2">
+						{{ form_label(ProlongationForm.prolong63, '62 -> 63 ans') }}
+						{{ form_widget(ProlongationForm.prolong63, {'id': 'prolong63','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-2">
+						{{ form_label(ProlongationForm.prolong64, '63 -> 64 ans') }}
+						{{ form_widget(ProlongationForm.prolong64, {'id': 'prolong64','attr': {'class' :'form-control'}}) }}
+					</div>
+					<div class="col-md-2">
+						{{ form_label(ProlongationForm.prolong65, '64 -> 65 ans') }}
+						{{ form_widget(ProlongationForm.prolong65, {'id': 'prolong65','attr': {'class' :'form-control'}}) }}
+					</div>
+				</div>
+				<!-- fin row -->
+				<br> <br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(ProlongationForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL PROLONGATION  ________________________________ -->
+
+<!--  ________________________________MODAL  FCS  ________________________________ -->
+<div id="FCS" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background-color: grey; text-align: center;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 id="testoo" class="modal-title">FCS</h4>
+			</div>
+			<div class="modal-body">
+				{{ form_start(FCSForm) }}
+				<div class="row">
+					<div class="col-md-4">
+
+						{{ form_label(FCSForm.matricule, 'Matricule') }}
+						{{ form_widget(FCSForm.matricule, {'id': 'pilote-matricule7', 'attr': {'class' :'form-control', 'placeholder':"Matricule",'readonly':'readonly'}}) }}
+					</div>
+					<div class="col-md-4">
+						<p>Nom</p>
+						<input id="pilote-nom7" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Prenom</p>
+						<input id="pilote-prenom7" type="text" name=""
+							class="form-control" readonly="readonly">
+					</div>
+				</div>
+				<!-- fin row -->
+				<div class="row">
+					<div class="col-md-4">
+						<p>Dte naissance</p>
+						<input id="pilote-dn2" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Age</p>
+						<input id="pilote-age2" type="text" name="" class="form-control"
+							readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<p>Date FCS theo.</p>
+						<input id="pilote-fcstheo3" type="text" name=""
+							class="form-control" readonly="readonly">
+					</div>
+				</div>
+				<!-- fin row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="hiddenFCS">
+							{{ form_label(FCSForm.dateFCStheorique, 'Date FCS theo.') }}
+							{{ form_widget(FCSForm.dateFCStheorique, {'id': 'pilote-fcstheo', 'attr': {'class' :'form-control', 'readonly' : 'readonly'}}) }}
+						</div>
+					</div>
+					<div class="col-md-6">
+						{{ form_label(FCSForm.dateFCSreelle, 'Date FCS reelle') }}
+						{{ form_widget(FCSForm.dateFCSreelle, {'id': 'datefcs-reelle', 'attr': {'class' :'form-control', 'placeholder':""}}) }}
+					</div>
+				</div>
+
+				<br> <br> <br>
+				<div class="row">
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						{{ form_end(FCSForm) }}
+					</div>
+					<div class="col-md-2">
+						<button type="button" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!--  ________________________________FIN MODAL  FCS  ________________________________ -->
+
+
+
+{% endblock %}
